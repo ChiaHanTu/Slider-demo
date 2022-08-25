@@ -1,93 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Vue 3 Basic</title>
-    <style>
-        .box{
-            background-color: purple;
-            height: 200px;
-            width: 200px;
-        }
-        .box2{
-            background-color: red;
-            height: 200px;
-            width: 200px;
-        }
-        .box3{
-            background-color: blue;
-            height: 200px;
-            width: 200px;
-        }
-        [v-cloak] {
-            display: none;
-        }
-        input {
-            margin: 10px;
-            display: block;
-        }
-    </style>
+    <title>輪播圖實作</title>
+    <link href="./normalize.css" rel="stylesheet" type="text/css">
+    <link href="./style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
-	<div id = "app" v-cloak>
-        {{ greeting }}
-        <input @keyup.enter="greet(greeting + '!!!!!')" v-model="greeting"/>
-
-        <login-form>
-
-        </login-form>
-        <hr />
-        <button @click.left="toggleBox">Toggle box</button>
-        <div v-if="isVisible" class = "box"></div>
-        <!--
-        <div v-else-if="isVisible2" class = "box2"></div>
-        <div v-else class = "box3"></div>
-        --> 
-	</div>
-
-	<script src="https://unpkg.com/vue@3"> </script>
-    <script>
-        let app = Vue.createApp({
-            data: function() {
-                return {
-                    greeting: 'Hello Vue 3!!',
-                    isVisible: false,
-                    isVisible2: true
-                }
-            },
-            methods: {
-                toggleBox() {
-                    this.isVisible = !this.isVisible
-                },
-                greet(greeting) {
-                    console.log(greeting)
-                }
-            }
-        })
-        app.component('login-form',{
-            template: `
-                <form @submit.prevent = "handleSubmit">
-                    <h1>{{ title }}</h1>
-                    <input type ="email" v-model="email" />
-                    <input type ="password" v-model="password" /> 
-                    <button>Log in</button>
-                </form>    
-            `,
-            data() {
-                return {
-                    title: 'Login Form',
-                    email: '',
-                    password: ''
-                }
-            },
-            methods: {
-                handleSubmit() {
-                    console.log(this.email, this.password)
-                }
-            }
-        })
-        app.mount('#app')
-    </script>
+    <div class="slider">
+        <div id="imgBox" class="img-box">
+            <img id="img1" src="./image/slide1.jpeg"/>
+            <img id="img2" src="./image/slide2.jpeg"/>
+            <img id="img3" src="./image/slide3.jpeg"/>
+            <img id="img4" src="./image/slide4.jpeg" />
+            <img id="img5" src="./image/slide5.jpeg" />
+        </div>
+        <div id="l-btn" class="button left-btn"></div>
+        <div id="r-btn" class="button right-btn"></div>
+        <div class="number-btn-box">
+            <div id="num-box" class="number-btn-wrap"></div>
+        </div>
+    </div>
+    <script src="main.js" type="text/javascript"></script>
 </body>
-
 </html>
